@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Ejercicio Mayoría de edad</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <textarea id="mensaje"></textarea>
+    <script>
+        let fec = prompt("Introduce fecha de nacimiento");
+        let arr = fec.split("/");
+        arr[2] = parseInt(arr[2])+18;
+        let fecna = new Date(arr[2], arr[1], arr[0]);
+        let fechoy = new Date();
+        if (fecna > fechoy) {
+            document.getElementById("mensaje").value = "No eres mayor de edad";
+        } else {
+            document.getElementById("mensaje").value = "Bienvenido";
+        }
+    </script>
+</body>
+</html>
