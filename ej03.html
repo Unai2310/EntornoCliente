@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Quesos disponibles</h1>
+    <label id="minus">cabrales, torta del casar, idiazabal</label><br>
+    <label id="mayus">Cabrales, Torta del Casar, Idiazabal</label><br>
+    <script>
+        let respuesta = prompt("Dime tu queso favorito");
+        let quesomin = ["cabrales", "torta del casar", "idiazabal"];
+        let quesomax = ["Cabrales", "Torta del Casar", "Idiazabal"];
+        if (quesomin.indexOf(respuesta) == -1) {
+            alert("No existe ese queso en la primera seleccion")
+        } else {
+            alert("Ese queso ocupa la posicion: " + quesomin.indexOf(respuesta) + " de la segunda seleccion");
+        }
+
+        if (quesomax.indexOf(respuesta) == -1) {
+            alert("No existe ese queso en la segunda seleccion")
+        } else {
+            alert("Ese queso ocupa la posicion: " + quesomax.indexOf(respuesta) + " de la segunda seleccion");
+        }
+    </script>
+</body>
+</html>
