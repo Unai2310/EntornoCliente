@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="campo"><br>
+    <hr>
+    <input type="text" id="resultado"><br>
+    <input type="button" onclick="clicboton()" value="Ver"><br>
+    <input type="button" onclick="locuraclick()" value="Locura"><br>
+    <input type="text" id="resultado2"><br>
+    <script>
+        var num;
+        function clicboton() {
+            let cadena=document.getElementById("campo").value;
+            num=Math.floor(Math.random()*cadena.length);
+            document.getElementById("resultado").value = cadena.charAt(num);
+        }
+
+        function locuraclick() {
+            let cad=document.getElementById("campo").value;
+            let recortado=cad.slice(0,num);
+            document.getElementById("resultado2").value = recortado;
+            num=Math.floor(Math.random()*recortado.length);
+            document.getElementById("resultado").value = recortado.charAt(num);
+        }
+
+    </script>
+</body>
+</html>
