@@ -12,7 +12,7 @@
     <input type="text" id="resultado"><br>
     <input type="button" onclick="clicboton()" value="Ver"><br>
     <input type="button" onclick="locuraclick()" value="Locura"><br>
-    <input type="text" id="resultado2"><br>
+    <label>Nuevo Limite:</label><input type="text" id="limit"><label>Letra nueva:</label><input type="text" id="resultado2"><br>
     <script>
         var num;
         function clicboton() {
@@ -24,9 +24,9 @@
         function locuraclick() {
             let cad=document.getElementById("campo").value;
             let recortado=cad.slice(0,num);
-            document.getElementById("resultado2").value = recortado;
+            document.getElementById("limit").value = recortado;
             num=Math.floor(Math.random()*recortado.length);
-            document.getElementById("resultado").value = recortado.charAt(num);
+            document.getElementById("resultado2").value = recortado.charAt(num);
         }
 
     </script>
