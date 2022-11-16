@@ -21,11 +21,14 @@
         <label id="Editorial" onclick="marcarLabel(this.id)">Editorial: </label><input type="text"><br>
         <label id="Año Edicion" onclick="marcarLabel(this.id)">Año Edicion: </label><input type="date"><br>
         <textarea id="info"></textarea><br>
-        <input type="button" onclick="guardarLibro()" value="GUARDAR"><input type="button" onclick="mostrarLibro()" value="VISUALIZAR">
+        <input type="button" onclick="guardarLibro()" value="GUARDAR">
+        <input type="button" onclick="mostrarLibros()" value="VISUALIZAR">
+        <input type="button" onclick="mostrarLibro()" value="BUSCAR POR 🔎">
     </div>
     <script>
         let libros = [];
         let texto = "";
+        var idBusqueda = 0;
         var campos = document.getElementsByTagName("input");
         var labels = document.getElementsByTagName("label");
         function guardarLibro() {
@@ -40,27 +43,50 @@
         }
 
         function marcarLabel(control) {
-            let i = 0;
+            idBusqueda = 0;
             labelNormal();
-            while (labels[i].id != control) {
+            while (labels[idBusqueda].id != control) {
                 labelNormal();
-                i++;
+                idBusqueda++;
             }
             document.getElementById(control).textContent = "🔎 " + document.getElementById(control).textContent;
         }
 
-        function mostrarLibro() {
+        function mostrarLibros() {
             document.getElementById("info").value = "";
+            texto = "";
             libros.forEach(muestrArray);
             document.getElementById("info").value = texto;
         }
 
         function muestrArray (libro, index) {
-            texto += "Libro Nº" + index+1 + 
+            texto += "Libro Nº" +  index + 
             "\nTitulo: " + libro.titulo + 
-            "\nAutor" + libro.autor + 
+            "\nAutor: " + libro.autor + 
             "\nEditorial: " + libro.editorial + 
             "\nAño Edición: " + libro.anio + "\n\n";
+        }
+
+        function mostrarLibro() {
+            if (comprobarLupa()) {
+                for (let i = 0;i<libros.length;i++) {
+                
+                }
+            } else {
+                document.getElementById("info").value = "No has seleccionado nigun campo para buscar";
+            }
+        }
+
+        function comprobarLupa() {
+            let esta = false;
+            let i = 0;
+            while (!esta && i<=3) {
+                if (labels[i].textContent.charAt(0) == "\ud83d") {
+                    esta = true;
+                }
+                i++;
+            }
+            return esta;
         }
 
         function limpiarCampos() {
