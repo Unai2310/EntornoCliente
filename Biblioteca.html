@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca</title>
+    <style>
+        div {
+            border: 5px solid black;
+            border-collapse: collapse;
+            width: 30%;
+        }
+    </style>
+</head>
+<body>
+    <div id="contenedor" >
+        <h2>Biblioteca</h2>
+        <label id="Titulo" onclick="marcarLabel(this.id)">Titulo: </label><input type="text"><br>
+        <label id="Autor" onclick="marcarLabel(this.id)">Autor: </label><input type="text"><br>
+        <label id="Editorial" onclick="marcarLabel(this.id)">Editorial: </label><input type="text"><br>
+        <label id="Año Edicion" onclick="marcarLabel(this.id)">Año Edicion: </label><input type="date"><br>
+        <textarea id="info"></textarea><br>
+        <input type="button" onclick="guardarLibro()" value="GUARDAR"><input type="button" onclick="mostrarLibros()" value="VISUALIZAR">
+    </div>
+    <script>
+        let libros = [];
+        let texto = "";
+        var campos = document.getElementsByTagName("input");
+        var labels = document.getElementsByTagName("label");
+        function guardarLibro() {
+            if (validarNulos()) {
+                const book = new Libro(campos[0].value, campos[1].value, campos[2].value, campos[3].value);
+                libros.push(book);
+                document.getElementById("info").value = "Libro añadido";
+                limpiarCampos();
+            } else {
+                alert("Hay campos vacios");
+            }
+        }
+
+        function marcarLabel(control) {
+            for (let i = 0; i<labels.length;i++) {
+                if (labels[i].id == control) {
+                    if (labels[i].textContent.charAt(0) != "🔎" ) {
+                    document.getElementById(control).textContent = "🔎 " + document.getElementById(control).textContent ;
+                    }
+                } else {
+                    labels[i].textContent = labels[i].id + ": ";
+                }
+            }
+        }
+
+        function mostrarLibros() {
+            document.getElementById("info").value = "";
+            libros.forEach(muestrArray);
+            document.getElementById("info").value = texto;
+        }
+
+        function muestrArray (libro, index) {
+            texto += "Libro Nº" + index+1 + "\nTitulo: " + libro.titulo + "\nAutor" + libro.autor + "\nEditorial: " + libro.editorial + "\nAño Edición: " + libro.anio + "\n\n";
+        }
+
+        function limpiarCampos() {
+            campos[0].value = "";
+            campos[1].value = "";
+            campos[2].value = "";
+            campos[3].value = "";
+        }
+
+        function validarNulos() {
+            if (campos[0].value=="" || campos[1].value=="" || campos[2].value=="" || campos[3].value=="") {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        class Libro {
+            constructor(titulo, autor, editorial, anio) {
+                this.titulo = titulo;
+                this.autor = autor;
+                this.editorial = editorial;
+                this.anio = anio;
+            }
+        }
+    </script>
+</body>
+</html>

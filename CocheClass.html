@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <label>Marca: </label><input type="text"><br>
+    <label>Modelo: </label><input type="text"><br>
+    <label>Memoria RAM: </label><input type="text"><br>
+    <label>Microprocesador: </label><input type="text"><br>
+    <label>Grafica: </label><input type="text"><br>
+    <label>Portatil: </label>Si <input type="radio" name="gruporadio">No <input type="radio" name="gruporadio"><br>
+    <input type="button" value="Añadir" onclick="accionBoton(this.value)">
+    <input type="button" value="Consultar" onclick="accionBoton(this.value)">
+    <input type="button" value="Eliminar" onclick="accionBoton(this.value)">
+    <input type="button" value="Borrar Campos" onclick="accionBoton(this.value)"><br>
+    <textarea id="info"></textarea>
+</body>
+<script>
+    var campos = document.getElementsByTagName("input");
+    var ordenadores = [];
+    let texto = "";
+    function accionBoton(control) {
+        if (control == "Añadir") {
+            añadir();
+        } else if (control == "Consultar") {
+            consultar();
+        } else if (control == "Eliminar") {
+            eliminar();
+        } else {
+            limpiar();
+        }
+    }
+
+    function añadir() {
+        let portatil = "Sobremesa";
+        if (campos[5].checked == true) {
+            portatil = "Portatil";
+        }
+        const ordenata = new Ordenador(campos[0].value, campos[1].value, campos[2].value, campos[3].value, campos[4].value, portatil);
+        ordenadores.push(ordenata);
+        document.getElementById("info").value = "Ordenador añadido";
+        limpiarCampos();
+    }
+
+    function consultar() {
+            document.getElementById("info").value = "";
+            ordenadores.forEach(muestrArray);
+            document.getElementById("info").value = texto;
+        }
+
+        function muestrArray (ordenador, index) {
+            texto += "Ordenador Nº" + index+1 + "\nMarca: " + ordenador.marca +
+            "\nModelo" + ordenador.modelo + 
+            "\nMemoria RAM: " + ordenador.ram + 
+            "\nMicroprocesador: " + ordenador.micro + 
+            "\nGrafica: " + ordenador.grafica +
+            "\nPortatil: " + ordenador.portable + "\n\n";
+        }
+
+    function eliminar() {
+        if (campos[0].value != "") {
+            for (let i=0; i<ordenadores.length;i++) {
+                if (campos[0].value == ordenadores[i]) {
+                    ordenadores.slice(i, i+1);
+                    document.getElementById("info").value = "Modelo " + campos[0].value + " ha silo eliminado";
+                }
+            }
+        } else {
+            document.getElementById("info").value = "Indica un modelo para eliminar";
+        }
+        
+    }
+
+    function limpiar() {
+        limpiarCampos();
+    }
+
+    function limpiarCampos() {
+        campos[0].value = "";
+        campos[1].value = "";
+        campos[2].value = "";
+        campos[3].value = "";
+        campos[4].value = "";
+        campos[5].checked = false;
+        campos[6].checked = false;
+    }
+
+    class Ordenador {
+            constructor(marca, modelo, ram, micro, grafica, portable) {
+                this.marca = marca;
+                this.modelo = modelo;
+                this.ram = ram;
+                this.micro = micro;
+                this.grafica = grafica;
+                this.portable = portable;
+            }
+        }
+</script>
+</html>
