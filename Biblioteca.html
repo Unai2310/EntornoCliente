@@ -21,7 +21,7 @@
         <label id="Editorial" onclick="marcarLabel(this.id)">Editorial: </label><input type="text"><br>
         <label id="Año Edicion" onclick="marcarLabel(this.id)">Año Edicion: </label><input type="date"><br>
         <textarea id="info"></textarea><br>
-        <input type="button" onclick="guardarLibro()" value="GUARDAR"><input type="button" onclick="mostrarLibros()" value="VISUALIZAR">
+        <input type="button" onclick="guardarLibro()" value="GUARDAR"><input type="button" onclick="mostrarLibro()" value="VISUALIZAR">
     </div>
     <script>
         let libros = [];
@@ -40,25 +40,27 @@
         }
 
         function marcarLabel(control) {
-            for (let i = 0; i<labels.length;i++) {
-                if (labels[i].id == control) {
-                    if (labels[i].textContent.charAt(0) != "🔎" ) {
-                    document.getElementById(control).textContent = "🔎 " + document.getElementById(control).textContent ;
-                    }
-                } else {
-                    labels[i].textContent = labels[i].id + ": ";
-                }
+            let i = 0;
+            labelNormal();
+            while (labels[i].id != control) {
+                labelNormal();
+                i++;
             }
+            document.getElementById(control).textContent = "🔎 " + document.getElementById(control).textContent;
         }
 
-        function mostrarLibros() {
+        function mostrarLibro() {
             document.getElementById("info").value = "";
             libros.forEach(muestrArray);
             document.getElementById("info").value = texto;
         }
 
         function muestrArray (libro, index) {
-            texto += "Libro Nº" + index+1 + "\nTitulo: " + libro.titulo + "\nAutor" + libro.autor + "\nEditorial: " + libro.editorial + "\nAño Edición: " + libro.anio + "\n\n";
+            texto += "Libro Nº" + index+1 + 
+            "\nTitulo: " + libro.titulo + 
+            "\nAutor" + libro.autor + 
+            "\nEditorial: " + libro.editorial + 
+            "\nAño Edición: " + libro.anio + "\n\n";
         }
 
         function limpiarCampos() {
@@ -66,6 +68,12 @@
             campos[1].value = "";
             campos[2].value = "";
             campos[3].value = "";
+        }
+
+        function labelNormal() {
+            for (let i = 0;i<labels.length;i++) {
+                labels[i].textContent = labels[i].id + ": ";
+            }
         }
 
         function validarNulos() {
