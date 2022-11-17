@@ -68,12 +68,25 @@
         }
 
         function mostrarLibro() {
+            texto = "";
             if (comprobarLupa()) {
                 for (let i = 0;i<libros.length;i++) {
-                    
+                    if (obtenerAtributo(idBusqueda, i) == campos[idBusqueda].value) {
+                        muestrArray(libros[i], i);
+                    }
                 }
+                document.getElementById("info").value = texto;
             } else {
-                document.getElementById("info").value = "No has seleccionado nigun campo para buscar";
+                document.getElementById("info").value = "No has seleccionado nigun campo para buscar o el que has seleccionado esta vacio";
+            }
+        }
+
+        function obtenerAtributo(indice, paso) {
+            switch (indice) {
+                case 0: return libros[paso].titulo; break;
+                case 1: return libros[paso].autor; break;
+                case 2: return libros[paso].editorial; break;
+                case 3: return libros[paso].anio; break;
             }
         }
 
@@ -81,7 +94,7 @@
             let esta = false;
             let i = 0;
             while (!esta && i<=3) {
-                if (labels[i].textContent.charAt(0) == "\ud83d") {
+                if (labels[i].textContent.charAt(0) == "\ud83d" && campos[i].value != "") {
                     esta = true;
                 }
                 i++;

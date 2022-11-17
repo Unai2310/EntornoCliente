@@ -36,25 +36,31 @@
     }
 
     function añadir() {
-        let portatil = "Sobremesa";
-        if (campos[5].checked == true) {
-            portatil = "Portatil";
+        if (campos[1].value != "" && campos[1].value != "" && campos[2].value != "" && campos[3].value != "" && campos[4].value != "" && (campos[5].checked != false || campos[6].checked != false)) {
+            let portatil = "Sobremesa";
+            if (campos[5].checked == true) {
+                portatil = "Portatil";
+            }
+            const ordenata = new Ordenador(campos[0].value, campos[1].value, campos[2].value, campos[3].value, campos[4].value, portatil);
+            ordenadores.push(ordenata);
+            document.getElementById("info").value = "Ordenador añadido";
+            limpiarCampos();
+        } else {
+            document.getElementById("info").value = "Hay campos vacios";
         }
-        const ordenata = new Ordenador(campos[0].value, campos[1].value, campos[2].value, campos[3].value, campos[4].value, portatil);
-        ordenadores.push(ordenata);
-        document.getElementById("info").value = "Ordenador añadido";
-        limpiarCampos();
     }
 
     function consultar() {
             document.getElementById("info").value = "";
+            texto = "";
             ordenadores.forEach(muestrArray);
             document.getElementById("info").value = texto;
         }
 
         function muestrArray (ordenador, index) {
-            texto += "Ordenador Nº" + index+1 + "\nMarca: " + ordenador.marca +
-            "\nModelo" + ordenador.modelo + 
+            texto += "Ordenador Nº" + index + 
+            "\nMarca: " + ordenador.marca +
+            "\nModelo: " + ordenador.modelo + 
             "\nMemoria RAM: " + ordenador.ram + 
             "\nMicroprocesador: " + ordenador.micro + 
             "\nGrafica: " + ordenador.grafica +
@@ -62,11 +68,11 @@
         }
 
     function eliminar() {
-        if (campos[0].value != "") {
+        if (campos[1].value != "") {
             for (let i=0; i<ordenadores.length;i++) {
-                if (campos[0].value == ordenadores[i]) {
-                    ordenadores.slice(i, i+1);
-                    document.getElementById("info").value = "Modelo " + campos[0].value + " ha silo eliminado";
+                if (campos[1].value == ordenadores[i].modelo) {
+                    ordenadores.splice(i, 1);
+                    document.getElementById("info").value = "Modelo " + campos[1].value + " ha silo eliminado";
                 }
             }
         } else {
