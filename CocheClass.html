@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ordenadores</title>
 </head>
 <body>
     <label>Marca: </label><input type="text"><br>
@@ -55,17 +55,17 @@
             texto = "";
             ordenadores.forEach(muestrArray);
             document.getElementById("info").value = texto;
-        }
+    }
 
-        function muestrArray (ordenador, index) {
-            texto += "Ordenador Nº" + index + 
-            "\nMarca: " + ordenador.marca +
-            "\nModelo: " + ordenador.modelo + 
-            "\nMemoria RAM: " + ordenador.ram + 
-            "\nMicroprocesador: " + ordenador.micro + 
-            "\nGrafica: " + ordenador.grafica +
-            "\nPortatil: " + ordenador.portable + "\n\n";
-        }
+    function muestrArray (ordenador, index) {
+        texto += "Ordenador Nº" + index + 
+        "\nMarca: " + ordenador.marca +
+        "\nModelo: " + ordenador.modelo + 
+        "\nMemoria RAM: " + ordenador.ram + 
+        "\nMicroprocesador: " + ordenador.micro + 
+        "\nGrafica: " + ordenador.grafica +
+        "\nPortatil: " + ordenador.portable + "\n\n";
+    }
 
     function eliminar() {
         if (campos[1].value != "") {
