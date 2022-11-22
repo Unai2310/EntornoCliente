@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrera Atletismo</title>
+</head>
+<body>
+    <label>Introduce tu fecha de nacimiento</label>
+    <input type="date" id="nac">
+    <input type="button" onclick="consultarCategoria()" value="Apuntarse">
+    <br>
+    <label id="info"></label>
+    <textarea id="apuntados"></textarea>
+</body>
+<script>
+    var anioactual = 2022;
+    var ageCat = new Map();
+    var fecna = document.getElementById("nac").value;
+    ageCat.set("7", "Prebenjamin");
+    ageCat.set("9", "Benjamin");
+    ageCat.set("11", "Alevin");
+    ageCat.set("13", "Infantil");
+    ageCat.set("15", "Cadete");
+    ageCat.set("17", "Juvenil");
+    ageCat.set("19", "Junior");
+    ageCat.set("22", "Sub23");
+    ageCat.set("35", "Senior");
+    ageCat.set("100", "Master");
+    
+    function consultarCategoria() {
+        let llaves = ageCat.keys();
+        let partes = fecna.split("-");
+        let edad = anioactual-partes[0];
+        for (var [key, value] of ageCat) {
+            let age = llaves.next().value;
+            if (edad) {
+                document.getElementById("apuntados").value = value;
+            }
+        }
+        if (edad>35) {
+            document.getElementById("apuntados").value = "Master";
+        }
+
+    }
+
+</script>
+</html>
