@@ -35,7 +35,7 @@
         let edad = anioactual-partes[0];
         for (var [key, value] of ageCat) {
             let age = llaves.next().value;
-            if (edad) {
+            if (edad<=key) {
                 document.getElementById("apuntados").value = value;
             }
         }
