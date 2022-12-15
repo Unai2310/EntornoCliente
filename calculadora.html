@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<style>
+    input {
+        margin: 1em;
+        padding: 1em;
+    }
+    #operacion {
+        text-align: right;
+    }
+</style>
+<body> 
+    <input type="text" id="operacion"><br>
+    <input type="button" value="7" onclick="escribir(this.value)"><input type="button" value="8" onclick="escribir(this.value)"><input type="button" value="9" onclick="escribir(this.value)"><input type="button" value="/" onclick="escribir(this.value)"><br>
+    <input type="button" value="4" onclick="escribir(this.value)"><input type="button" value="5" onclick="escribir(this.value)"><input type="button" value="6" onclick="escribir(this.value)"><input type="button" value="*" onclick="escribir(this.value)"><br>
+    <input type="button" value="1" onclick="escribir(this.value)"><input type="button" value="2" onclick="escribir(this.value)"><input type="button" value="3" onclick="escribir(this.value)"><input type="button" value="-" onclick="escribir(this.value)"><br>
+    <input type="button" value="0" onclick="escribir(this.value)"><input type="button" value="=" onclick="escribir(this.value)"><input type="button" value="C" onclick="borrar()"><input type="button" value="+" onclick="escribir(this.value)"><br>
+    <script>
+        var operacion = "";
+        let numeros = [0,1,2,3,4,5,6,7,8,9];
+        function escribir(valor) {
+            if (!numeros.includes(valor)) {
+                operacion = valor;
+            }
+            document.getElementById("operacion").value += valor;
+        }
+        function borrar() {
+            document.getElementById("operacion").value = "";
+        }
+    </script>
+</body>
+</html>
